@@ -1,0 +1,17 @@
+services:
+  frontend:
+    build:
+      context: ../example-app
+      dockerfile: ../2_03-10/Dockerfile.frontend
+    image: ubuntu:24.04
+    ports:
+      - 5001:5001
+  backend:
+    build:
+      context: ../example-app
+      dockerfile: ../2_03-10/Dockerfile.backend
+    image: golang:1.16
+    environment:
+      - REQUEST_ORIGIN=http://localhost:5001
+    ports:
+      - 8080:8080
